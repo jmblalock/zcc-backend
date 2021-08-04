@@ -46,6 +46,5 @@ export const Product = list({
         connect: { id: context.session.itemId },
       }),
     }),
-    // TODO: Photo
   },
 });
