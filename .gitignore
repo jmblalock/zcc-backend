@@ -1,7 +1,8 @@
-node_modules/
-.env*
-.vscode
 .keystone/
+node_modules/
+.next/
+.env
+.vscode
 .DS_Store
 *.log
 .build/
