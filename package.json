@@ -1,8 +1,8 @@
 {
-  "name": "sick-fits-backend",
+  "name": "zcc-backend",
   "version": "2.0.0",
   "private": true,
-  "author": "Wes Bos",
+  "author": "Justin Blalock",
   "license": "MIT",
   "scripts": {
     "dev": "keystone-next",
