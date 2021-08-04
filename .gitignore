@@ -1,4 +1,6 @@
 node_modules/
-.env
+*.env
 .vscode
-
+.keystone
+.DS_Store
+*.log
