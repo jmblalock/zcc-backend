@@ -1,5 +1,4 @@
 .keystone/
 .env
-seed-data/
 .vscode
 node_modules
