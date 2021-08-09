@@ -5,7 +5,7 @@ import { isSignedIn, rules } from '../access';
 export const Product = list({
   access: {
     create: isSignedIn,
-    read: rules.canReadProducts,
+    read: () => true,
     update: rules.canManageProducts,
     delete: rules.canManageProducts,
   },
@@ -28,8 +28,8 @@ export const Product = list({
     status: select({
       options: [
         { label: 'Draft', value: 'DRAFT' },
-        { label: 'Available', value: 'Available' },
-        { label: 'Unavailable', value: 'Unavailable' },
+        { label: 'Available', value: 'AVAILABLE' },
+        { label: 'Unavailable', value: 'UNAVAILABLE' },
       ],
       defaultValue: 'DRAFT',
       ui: {
