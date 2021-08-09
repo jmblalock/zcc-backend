@@ -46,7 +46,7 @@ async function checkout(
       }
     `,
   });
-  console.dir(user, { depth: null });
+  // console.dir(user, { depth: null });
   // 2. Calculate the total price for their order
   const cartItems = user.cart.filter((cartItem) => cartItem.product);
   const amount = cartItems.reduce(function (
