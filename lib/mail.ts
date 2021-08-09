@@ -1,13 +1,12 @@
 import { createTransport } from 'nodemailer';
 
-const transport = createTransport({
-  host: process.env.MAIL_HOST,
-  port: process.env.MAIL_PORT,
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
-  },
-});
+const nodemailerSendgrid = require('nodemailer-sendgrid');
+
+const transport = createTransport(
+  nodemailerSendgrid({
+    apiKey: process.env.SENDGRID_API_KEY,
+  })
+);
 
 function makeEmail(text: string): string {
   return `
@@ -48,10 +47,9 @@ export async function sendPasswordResetEmail(
   // email the user a token
   const info = (await transport.sendMail({
     to,
-    from: 'test@example.com',
-    subject: 'Your password reset token!',
+    from: 'me@justinblalock.dev',
+    subject: 'Your password reset token',
     html: makeEmail(`Your Password Reset Token is here:
-    
       <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}">Click Here to reset</a>
     `),
   })) as MailResponse;
