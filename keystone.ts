@@ -17,6 +17,8 @@ import { sendPasswordResetEmail } from './lib/mail';
 import { extendGraphqlSchema } from './mutations';
 import { permissionsList } from './schemas/fields';
 
+// import { insertSeedData } from './seed-data';
+
 const databaseURL = process.env.DATABASE_URL;
 
 const sessionConfig = {
