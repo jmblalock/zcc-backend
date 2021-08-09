@@ -17,11 +17,11 @@ import { sendPasswordResetEmail } from './lib/mail';
 import { extendGraphqlSchema } from './mutations';
 import { permissionsList } from './schemas/fields';
 
-const databaseURL =
-  process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
+const databaseURL = process.env.DATABASE_URL;
 
 const sessionConfig = {
-  maxAge: 60 * 60 * 24 * 360, // How long they stay signed in?
+  secure: process.env.NODE_ENV === 'production',
+  maxAge: 60 * 60 * 24 * 30, // How long they stay signed in?
   secret: process.env.COOKIE_SECRET,
 };
 
@@ -31,12 +31,20 @@ const { withAuth } = createAuth({
   secretField: 'password',
   initFirstItem: {
     fields: ['name', 'email', 'password'],
-    // TODO: Add in initial roles here
+    itemData: {
+      role: {
+        create: {
+          name: 'Admin Role',
+          ...Object.fromEntries(permissionsList.map((i) => [i, true])),
+        },
+      },
+    },
   },
   passwordResetLink: {
     async sendToken(args) {
       // send the email
       await sendPasswordResetEmail(args.token, args.identity);
+      console.log('Password reset info: ', args);
     },
   },
 });
