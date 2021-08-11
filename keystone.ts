@@ -56,7 +56,7 @@ export default withAuth(
     server: {
       cors: {
         origin: '*',
-        credentials: true,
+        // credentials: true,
       },
     },
     db: {
