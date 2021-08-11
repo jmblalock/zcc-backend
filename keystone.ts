@@ -55,9 +55,8 @@ export default withAuth(
   config({
     server: {
       cors: {
-        origin: true,
+        origin: [process.env.FRONTEND_URL],
         credentials: true,
-        methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
       },
     },
     db: {
